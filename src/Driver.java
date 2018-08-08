@@ -10,11 +10,10 @@ public class Driver {
 	static GameBoard game = new GameBoard();													//Initializing the GameBoard
 	static ArrayList<GamePiece> gamePieces = game.getGamePiecesArray();							//Storing the gamePieces array
 	
-	/*********************************************************************************
-	 * 																				 *
-	 * Gets user input to decide if player or Gideon is going to make the first move *
-	 * 																				 *
-	 *********************************************************************************
+	/**
+	 * 
+	 * Gets user input to decide if player or Gideon is going to make the first move
+	 * 
 	 */
 	public static void start() {
 		@SuppressWarnings("resource")
@@ -35,11 +34,10 @@ public class Driver {
 	}
 	
 	/****************************************
-	 * 										*
-	 * Captures the player's move			*
-	 * Executes the player's move if legal	*
-	 * 										*
-	 ****************************************
+	 * 
+	 * Captures the player's move
+	 * Executes the player's move if legal
+	 * 
 	 */
 	private static void playersMove() {
 		Print print = new Print(); 
@@ -76,12 +74,11 @@ public class Driver {
 	
 	}
 	
-	/****************************************************
-	 * 													*
-	 * Calls minimax to get Gideons move				*
-	 * Executes Gideons Move i.e. returned by Minimax	*
-	 * 													*
-	 * **************************************************
+	/**
+	 * 
+	 * Calls minimax to get Gideons move
+	 * Executes Gideons Move i.e. returned by Minimax
+	 * 
 	 */
 	private static void GideonsMove() {
 		Print print = new Print();

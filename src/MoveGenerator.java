@@ -4,15 +4,14 @@ public class MoveGenerator {
 	
    static ArrayList<GamePiece> gamePieces = null;
 
-   /*********************************************************************************************
-    * 																							*
-    * Gen(...) generates legal moves for Gideon or Player										*			
-    * 																							*
-    * @param playerOrGideon - true = Generate Gideon's move | false = Generate Player's move	*
-    * @param gamePiecesA - ArrayList storing all the game pieces								*
-    * @return - return's all the moves stored in an ArrayList of Integers						*
-    * 																							*
-    * *******************************************************************************************
+   /**
+    * 
+    * Generates legal moves for Gideon or Player
+    * 
+    * @param playerOrGideon - true = Generate Gideon's move | false = Generate Player's move
+    * @param gamePiecesA - ArrayList storing all the game pieces
+    * @return - return's all the moves stored in an ArrayList of Integers
+    * 
     */
    public static ArrayList<Integer> Gen(boolean playerOrGideon, ArrayList<GamePiece> gamePiecesA) {
    		
@@ -266,14 +265,13 @@ public class MoveGenerator {
       return moves;
    }
 	
-   /*****************************************************************************************************************************
-    * 																															*
-    * checkLegalMove(...) checks if there already exists a game piece on the location where we want to move our current piece	*
-    * 																															*
-    * @param move1 - stores the move that needs to be validated																	*
-    * @return - true = legal move was passed | false = illegal move was passed													*
-    * 																															*
-    * ***************************************************************************************************************************
+   /**
+    * 
+    * checkLegalMove() checks if there already exists a game piece on the location where we want to move our current piece
+    * 
+    * @param move1 - stores the move that needs to be validated
+    * @return - true = legal move was passed | false = illegal move was passed
+    * 
     */
    private static boolean checkLegalMove(int move1) {
    		
@@ -289,18 +287,17 @@ public class MoveGenerator {
       return true;
    }
 
-   /*************************************************************************************************************
-    * 																											*
-    * addAttackMove(....) adds the attack move for the current game piece										*
-    * 																											*
-    * @param moves - ArrayList containing all the moves															*
-    * @param gamePieces - ArrayList containing all the game pieces												*
-    * @param currentPiece - GamePiece for which we are adding attack move										*
-    * @param loc - Location of the current gamePiece															*
-    * @param playerOrGideon - Flag determining if current GamePiece is player's or Gideon's						*
-    * @return - returning the moves ArrayList after adding all the attack moves for the current GamePiece		*
-    * 																											*
-    * ***********************************************************************************************************
+   /**
+    * 
+    * addAttackMove() adds the attack move for the current game piece
+    * 
+    * @param moves - ArrayList containing all the moves
+    * @param gamePieces - ArrayList containing all the game pieces
+    * @param currentPiece - GamePiece for which we are adding attack move
+    * @param loc - Location of the current gamePiece
+    * @param playerOrGideon - Flag determining if current GamePiece is player's or Gideon's
+    * @return - returning the moves ArrayList after adding all the attack moves for the current GamePiece
+    * 
     */
    private static ArrayList<Integer> addAttackMove(ArrayList<Integer> moves, ArrayList<GamePiece> gamePieces, GamePiece currentPiece, int loc, boolean playerOrGideon){
    		
@@ -605,15 +602,16 @@ public class MoveGenerator {
       return moves;
    }
 	
-   /*********************************************************************************************
+   /**
     * 																		
     * Condition check for adding an attack move for Player's game pieces	
     * 																		
     * @param move - attackMove that needs to be checked before adding to the ArrayList of moves
-    * @param currentPiece -
-    * @param loc
-    * @param moves
-    * @return
+    * @param currentPiece - gamePiece that attempting to attack another piece
+    * @param loc - location of current game piece
+    * @param moves - ArraList of moves
+    * @return - returning arrayList of moves
+    * 
     */
    private static ArrayList<Integer> plus10(int move, GamePiece currentPiece, int loc, ArrayList<Integer> moves) {
       for(int i=0; i<gamePieces.size(); ++i) {
@@ -624,15 +622,16 @@ public class MoveGenerator {
       return moves;
    }
 		
-   /*************************************************************************
-    * 																		*
-    * Condition check for adding an attack move for Gideon's game pieces	*
+   /**
     * 
-    * @param move
-    * @param currentPiece
-    * @param loc
-    * @param moves
-    * @return
+    * Condition check for adding an attack move for Gideon's game piece
+    * 
+    * @param move - attackMove that needs to be checked before adding to the ArrayList of moves
+    * @param currentPiece - gamePiece that attempting to attack another piece
+    * @param loc - location of current game piece
+    * @param moves - ArraList of moves
+    * @return - returning arrayList of moves 
+    * 
     */
    private static ArrayList<Integer> negative10(int move, GamePiece currentPiece, int loc, ArrayList<Integer> moves) {
       for(int i=0; i<gamePieces.size(); ++i) {

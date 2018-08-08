@@ -20,19 +20,18 @@ public class UpdateBoard {
 	private GamePiece spare = null;
 	private String actionPerformed = null;
 	
-	/***************************************************************************************************
-	 * 																								   *
-	 * playMove(....) method executes the move on the gameBoard	   									   *
-	 * 																								   *
-	 * @param move - The move that has to be executed												   *
-	 * @param gameB - Copy of the gameBoard where we want to make the move							   *
-	 * @param gamePieces - Copy of the gamePieces arrayList where we have all the game pieces stored   *
-	 * @param flag - To determine if player or Gideon is making the move							   *
-	 * @param dummyBoard - To determine if MiniMax if calling the method or if Gideon and Player are   *
-	 * @param checkStatus - To determine if there is any need to call the checkStatus method		   *
-	 * @return - returns the updated game state														   *
-	 * 																								   *
-	 ***************************************************************************************************
+	/**
+	 * 
+	 * playMove() method executes the move on the gameBoard
+	 * 
+	 * @param move - The move that has to be executed
+	 * @param gameB - Copy of the gameBoard where we want to make the move
+	 * @param gamePieces - Copy of the gamePieces arrayList where we have all the game pieces stored
+	 * @param flag - To determine if player or Gideon is making the move
+	 * @param dummyBoard - To determine if MiniMax if calling the method or if Gideon and Player are
+	 * @param checkStatus - To determine if there is any need to call the checkStatus method
+	 * @return - returns the updated game state
+	 * 
 	 */
 	public GameBoard playMove(String move, GameBoard gameB, ArrayList<GamePiece> gamePieces, boolean flag, boolean dummyBoard, boolean checkStatus) {
 		
@@ -61,22 +60,21 @@ public class UpdateBoard {
 	}
 	
 	
-	/********************************************************************************************************
-	 * 																										*
-	 * checkStatus(....) checks for the impact on the gameBoard made by the recently moved gamePiece		*
-	 * @scenario1 - By the recent move, no other piece was effected											*
-	 * @scenario2 - By the recent move, other player's piece's health was decreased(changed to mini piece)	*
-	 * @scenario3 - By the recent move, other player's piece was killed										*
-	 * @scenario4 - By the recent move, other player's King was attacked and Game Over						*
-	 * 																										*
-	 * @param recentlyMoved - the piece that was recently moved by the playMove(....) method				*
-	 * @param newX - X co-ordinate of the recently moved game piece											*
-	 * @param newY - Y co-ordinate of the recently moved game piece											*
-	 * @param gamePieces - ArrayList of all the game pieces													*
-	 * @param playerOrGideonFlag - To determine if player or Gideon is making the move						*
-	 * @param dummyBoard - To determine if MiniMax if calling the method or if Gideon and Player are		*
-	 * 																										*
-	 ********************************************************************************************************
+	/**
+	 * 
+	 * checkStatus() checks for the impact on the gameBoard made by the recently moved gamePiece
+	 * @scenario1 - By the recent move, no other piece was effected
+	 * @scenario2 - By the recent move, other player's piece's health was decreased(changed to mini piece)
+	 * @scenario3 - By the recent move, other player's piece was killed
+	 * @scenario4 - By the recent move, other player's King was attacked and Game Over
+	 * 
+	 * @param recentlyMoved - the piece that was recently moved by the playMove(....) method
+	 * @param newX - X co-ordinate of the recently moved game piece
+	 * @param newY - Y co-ordinate of the recently moved game piece
+	 * @param gamePieces - ArrayList of all the game pieces
+	 * @param playerOrGideonFlag - To determine if player or Gideon is making the move
+	 * @param dummyBoard - To determine if MiniMax if calling the method or if Gideon and Player are
+	 * 
 	 */
 	public void checkStatus(GamePiece recentlyMoved, int newX, int newY, ArrayList<GamePiece> gamePieces, boolean playerOrGideonFlag, boolean dummyBoard) {
 		
@@ -130,13 +128,12 @@ public class UpdateBoard {
 	}
 	
 	
-	/********************************************************************************************************
-	 * 																										*
-	 * Calls changePieceToMini(...) to decrease the health of the game piece/change the piece to mini		*
-	 * 																										*
-	 * @param piece - The game piece whose health is getting decreased or is getting changed to mini		*
-	 * 																										*
-	 * ******************************************************************************************************
+	/**
+	 * 
+	 * Calls changePieceToMini() to decrease the health of the game piece/change the piece to mini
+	 * 
+	 * @param piece - The game piece whose health is getting decreased or is getting changed to mini
+	 *
 	 */
 	public void decreaseHealth(GamePiece piece) {
 		
@@ -145,13 +142,12 @@ public class UpdateBoard {
 	}
 	
 	
-	/************************************************************************************
-	 * 																					*
-	 * Calls removeGamePiece(...) to remove/delete the game piece from the game board	*
-	 * 																					*
-	 * @param piece - The game piece that is getting deleted from the game board		*
-	 * 																					*
-	 * **********************************************************************************
+	/**
+	 * 
+	 * Calls removeGamePiece() to remove/delete the game piece from the game board
+	 * 
+	 * @param piece - The game piece that is getting deleted from the game board
+	 * 
 	 */
 	public void kill(GamePiece piece) {
 		
@@ -160,17 +156,16 @@ public class UpdateBoard {
 	}
 	
 	
-	/************************************************************************************************************************
-	 * 																														*
-	 * GameOver(...) gets called to end the game as king was attacked														*
-	 * This method check's whose King was attacked and remove's it from the game board										*
-	 * Print's out the winner and the final state of game board after the king was attacked and exit's the game				*
-	 * 																														*
-	 * @param piece - The game piece that was attacked by the recently moved piece											*
-	 * @param dummyBoard - To check if the MiniMax method is calling the GameOver method, if dummyBoard = true, then		*
-	 * 					 - Method does NOT exit's the game and does not print's the winner and final game state				*
-	 * 																														*
-	 * **********************************************************************************************************************
+	/**
+	 * 
+	 * GameOver() gets called to end the game as king was attacked
+	 * This method check's whose King was attacked and remove's it from the game board
+	 * Print's out the winner and the final state of game board after the king was attacked and exit's the game
+	 * 
+	 * @param piece - The game piece that was attacked by the recently moved piece
+	 * @param dummyBoard - To check if the MiniMax method is calling the GameOver method, if dummyBoard = true, then
+	 * 					 - Method does NOT exit's the game and does not print's the winner and final game state
+	 * 
 	 */
 	public void GameOver(GamePiece piece, boolean dummyBoard) {
 		
@@ -194,16 +189,15 @@ public class UpdateBoard {
 	}
 	
 	
-	/************************************************************************************************************
-	 * 																											*	
-	 * findKing(...) finds the king for player or Gideon depending on the playerOrGideon flag					*
-	 * This method is used by MiniMax algorithm, to check if the opposite players king is still alive or not	*
-	 * 																											*
-	 * @param gamePieces - Arraylist that contains all the game pieces that are currently in the game			*
-	 * @param playerOrGideon - Specifies if we want to find player's or Gideon's King							*
-	 * @return - returns boolean value that represents if we found the king or not								*
-	 * 																											*
-	 * **********************************************************************************************************
+	/**
+	 *	
+	 * findKing() finds the king for player or Gideon depending on the playerOrGideon flag
+	 * This method is used by MiniMax algorithm, to check if the opposite players king is still alive or not
+	 * 
+	 * @param gamePieces - Arraylist that contains all the game pieces that are currently in the game
+	 * @param playerOrGideon - Specifies if we want to find player's or Gideon's King
+	 * @return - returns boolean value that represents if we found the king or not
+	 * 
 	 */
 	public boolean findKing(ArrayList<GamePiece> gamePieces, boolean playerOrGideon) {
 
@@ -228,20 +222,19 @@ public class UpdateBoard {
 	}
 	
 	
-	/****************************************************************************************************************************
-	 * 																															*
-	 * retractMove(...) method undoes the previous move, this method is used by MiniMax algorithm								*
-	 * This method helps MiniMax algorithm to maintain the previous game board state											*
-	 * @scenario1 - previous action performed was decreaseHealth and hence this scenario will restore the health that was lost	*
-	 * @scenario2 - previous action performed was Kill and hence this scenario will restore the game piece that was killed		*
-	 * 																															*
-	 * @param move - Stores the move that was recently executed on the board													*
-	 * @param gameB - The current GameBoard state																				*
-	 * @param gamePieces - The current gamePieces arrayList																		*
-	 * @param flag - To determine if player or Gideon is making the move														*
-	 * @return - returns the gameState after retracting the current move														*
-	 * 																															*
-	 * **************************************************************************************************************************
+	/**
+	 * 
+	 * retractMove() method undoes the previous move, this method is used by MiniMax algorithm
+	 * This method helps MiniMax algorithm to maintain the previous game board state
+	 * @scenario1 - previous action performed was decreaseHealth and hence this scenario will restore the health that was lost
+	 * @scenario2 - previous action performed was Kill and hence this scenario will restore the game piece that was killed
+	 * 
+	 * @param move - Stores the move that was recently executed on the board
+	 * @param gameB - The current GameBoard state
+	 * @param gamePieces - The current gamePieces arrayList
+	 * @param flag - To determine if player or Gideon is making the move
+	 * @return - returns the gameState after retracting the current move
+	 * 
 	 */
 	public GameBoard retractMove(String move, GameBoard gameB, ArrayList<GamePiece> gamePieces, boolean flag) {
 		
@@ -278,11 +271,10 @@ public class UpdateBoard {
 	}
 	
 	
-	/********************************************************************
-	 * 																	*
-	 * @returns - the action was performed by the previous move			*
-	 * 																	*
-	 * ******************************************************************
+	/**
+	 * 
+	 * @returns - the action was performed by the previous move
+	 * 
 	 */
 	public String getActionPerformed() {
 		return this.actionPerformed;

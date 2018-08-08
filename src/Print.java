@@ -9,9 +9,9 @@ public class Print {
 	/**
 	 * 
 	 * All the legal Moves are stored in 2534 format, moves() changes the format to E2D3
-	 * Where in 25(Y-axis, X-axis) represents the location of the piece and 34(Y-axis, X-axis) is the location where the piece will be moved
+	 * Where 25(Y-axis, X-axis) represents the location of the piece and 34(Y-axis, X-axis) is the location where the piece will be moved
 	 * moves() prints out all the possible legal moves in E2D3 format
-	 * Where in E2(X-axis, Y-axis) represents the location of the piece and D3(X-axis, Y-axis) is the location where the piece will be moved
+	 * Where E2(X-axis, Y-axis) represents the location of the piece and D3(X-axis, Y-axis) is the location where the piece will be moved
 	 * 
 	 * @param moves - Contains all the possible moves Player or Gideon can make during their turns
 	 * 
@@ -52,7 +52,7 @@ public class Print {
 	}
 	
 	public void board(GameBoard game) {
-		game.printBoard(game);														//Prints the entire gameboard
+		game.printBoard();														//Prints the entire gameboard
 	}
 	
 }

@@ -36,31 +36,53 @@ public class GameBoard {
 		board.add(new MiniNinja(2, 1, false));
 		board.add(new MiniNinja(2, 2, false));
 		
-		updateGameBoard();
+		this.updateGameBoard();
 	
 	}
 	
 	public ArrayList<GamePiece> getGamePiecesArray() {
 		
-		return board;
+		return this.board;
 		
 	}
 	
 	public void updateGameBoard() {
 		
-		gameBoard = new String[8][7];
+		this.gameBoard = new String[8][7];
 		
 		for(int i=0; i<board.size(); ++i) {
 			
-			gameBoard[board.get(i).getX()][board.get(i).getY()] = board.get(i).printPiece();
+			this.gameBoard[board.get(i).getX()][board.get(i).getY()] = board.get(i).printPiece();
 		
 		}
 	
 	}
 	
-	public void printBoard() {
+	public void changePieceToMini(GamePiece piece) {
+		int X = piece.getX();
+		int Y = piece.getY();
+		board.remove(piece);
 		
-		updateGameBoard();
+		if(piece instanceof Samurai) {
+			
+			board.add(new MiniSamurai(X, Y, piece.getComputerPlayerFlag()));
+			
+		}
+		
+		else if(piece instanceof Ninja) {
+			
+			board.add(new MiniNinja(X, Y, piece.getComputerPlayerFlag()));
+			
+		}
+	}
+	
+	public void removeGamePiece(GamePiece piece) {
+		board.remove(piece);
+	}
+	
+	public void printBoard(GameBoard game) {
+		
+		//game.updateGameBoard(game);
 		
 		System.out.println("\n   --------------------- Computer");
 		

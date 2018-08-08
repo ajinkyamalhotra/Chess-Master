@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author ajink
+ *
+ */
 public class GamePiece {
 
 	private int X;
@@ -43,6 +47,10 @@ public class GamePiece {
 		
 		return this.computerPlayer;
 		
+	}
+	
+	public GamePiece getPiece() {
+		return this;
 	}
 	
 	public String printPiece() {

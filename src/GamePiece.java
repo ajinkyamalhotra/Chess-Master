@@ -9,8 +9,15 @@ public class GamePiece {
 	private int Y;
 	private boolean computerPlayer;
 	
-	//X and Y are location co-ordinates and boolean value
-	//determines if its a player piece or computer piece
+	/**
+	 * 
+	 * Constructor for all the game pieces
+	 * 
+	 * @param X - x co-ordinate of the game piece
+	 * @param Y - y co-ordinate of the game piece
+	 * @param computerPlayer - flag to determine if an instance of MiniNinja is Gideon's or player's
+	 * 
+	 */
 	public GamePiece(int X, int Y, boolean computerPlayer) {
 		
 		this.X = X;
@@ -19,40 +26,77 @@ public class GamePiece {
 		
 	}
 	
+	/**
+	 * 
+	 * Set's X co-ordinate
+	 * 
+	 * @param X - new X co-ordinate
+	 * 
+	 */
 	public void setX(int X) {
 		
 		this.X = X;
 		
 	}
 	
+	/**
+	 * 
+	 * Set's Y co-ordinate
+	 * 
+	 * @param Y - new Y co-ordinate
+	 * 
+	 */
 	public void setY(int Y) {
 		
 		this.Y = Y;
 		
 	}
 	
+	/**
+	 * 
+	 * @return - returns X co-ordinate of the game piece
+	 * 
+	 */
 	public int getX() {
 		
 		return this.X;
 		
 	}
 	
+	/**
+	 * 
+	 * @return - returns Y co-ordinate of the game piece
+	 * 
+	 */
 	public int getY() {
 		
 		return this.Y;
 		
 	}
 	
+	/**
+	 * 
+	 * @return - returns player game piece = false or Gideon game piece = true
+	 * 
+	 */
 	public boolean getComputerPlayerFlag() {
 		
 		return this.computerPlayer;
 		
 	}
 	
+	/**
+	 * 
+	 * @return - return's the piece
+	 */
 	public GamePiece getPiece() {
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @return - the letter that is associated with the game piece
+	 */
 	public String printPiece() {
 		String player = "   ";
 		

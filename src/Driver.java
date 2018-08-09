@@ -33,7 +33,7 @@ public class Driver {
 		
 	}
 	
-	/****************************************
+	/**
 	 * 
 	 * Captures the player's move
 	 * Executes the player's move if legal
@@ -91,7 +91,7 @@ public class Driver {
 		
 		//System.out.println("\n\n Gideon will play......" 
 						//+"Feature coming soon, until then keep practicing\n");
-		
+		  
 		MiniMax minimax = new MiniMax(game, moves);												//Declaring and initializing MiniMax object with parameters game and moves
 
 		if(moves.size() < 6) {																	//Will increment the MiniMax MAX_DEPTH size by 1 if the legal moves are less than 6

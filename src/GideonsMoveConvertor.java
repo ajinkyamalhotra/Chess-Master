@@ -1,6 +1,18 @@
-
+/**
+ * 
+ * @author ajink
+ *
+ */
 public class GideonsMoveConvertor {
 
+	/**
+	 * 
+	 * Converts Gideons move to X1Y2 format
+	 * 
+	 * @param gideonsMove - move that has to be converted
+	 * @return - returns the formatted move
+	 * 
+	 */
 	public static String convert(String gideonsMove) {
 		
 		int move = 0;

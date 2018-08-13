@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author ajink
+ *
+ */
 public class MiniMax {
 	
 	GameBoard game = null;

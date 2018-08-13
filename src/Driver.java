@@ -20,13 +20,25 @@ public class Driver {
 		Scanner kb = new Scanner(System.in);
 		System.out.println("\n (1)    Player's Move\n (2)    Gideon's Move\n ");
 		
+		String prompt = "GAME: Chess Master\r\n" + 
+				"      This is a chess-like game with a \"Karate\" theme.  Each side starts with 3 samurai,\r\n" + 
+				"      3 ninjas, 3 mini-samurai, 3 mini-ninjas, and a King.  It is played on a 7x8 board,\r\n" + 
+				"      and players \"attack\" opposing pieces by moving one of their pieces in front of\r\n" + 
+				"      an opponents piece.  When a piece is attacked, it is \"demoted\".  When a \"mini\"\r\n" + 
+				"      piece is attacked, it is removed from the board.  The king cannot move, and if it\r\n" + 
+				"      is attacked, then that side loses.  The initial position is:";
+		
 		String userInput = kb.next();  															//Getting the user's preference for whose playing the first move
 		
-		if(userInput.equals("1"))      															//Player will play the first move
+		if(userInput.equals("1")) {    															//Player will play the first move
+			System.out.println(prompt);
 			playersMove(); 
+		}
 		
-		else if(userInput.equals("2"))															//Gideon will play the first move
+		else if(userInput.equals("2")) {														//Gideon will play the first move
+			System.out.println(prompt);
 			GideonsMove();
+		}
 		
 		else 						   															//Invalid input, re-call method and attempt to get user's input again
 			start();

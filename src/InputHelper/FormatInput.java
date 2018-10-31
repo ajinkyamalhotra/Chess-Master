@@ -1,46 +1,15 @@
-import java.util.ArrayList;
+/**
+ * @author Ajinkya Malhotra
+ */
+package InputHelper;
 
-public class CheckUserInput {
-	
+public class FormatInput {
+
 	/**
-	 * 
-	 * Checks if the move enter by the player/user is legal or not
-	 * 
-	 * @param move - move entered by the user
-	 * @param moves - ArrayList of all possible legal moves
-	 * @return - boolean value true if move is legal or else false
-	 * 
-	 */
-	public static boolean checkMove(String move, ArrayList<Integer> moves) {
-		
-		if(move.length() != 4) {
-			System.out.println("\n Illegal move entered please choose a move from the following list: ");
-			return false;
-		}
-		
-		String print = formatUserMove(move);
-		
-		if(print == null)
-			return false;
-		
-		int userMove = Integer.parseInt(print);
-		for(int i=0; i<moves.size(); ++i) {
-			if(userMove == moves.get(i))
-				return true;
-		}
-		
-		System.out.println("\n Move not found please choose a move from the following list: ");
-		return false;
-		
-	}
-	
-	/**
-	 * 
 	 * Formats user entered move to be compatible with the playMove() method
 	 * 
 	 * @param move - move that has to be formatted
 	 * @return - formatted user move
-	 * 
 	 */
 	public static String formatUserMove(String move) {
 		char first = 'Z';
@@ -78,4 +47,5 @@ public class CheckUserInput {
 		
 		return formattedUserInput;
 	}
+	
 }

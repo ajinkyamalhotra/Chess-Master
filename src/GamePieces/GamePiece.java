@@ -1,8 +1,8 @@
 /**
- * 
  * @author ajink
- *
  */
+
+package GamePieces;
 public class GamePiece {
 
 	private int X;
@@ -10,13 +10,11 @@ public class GamePiece {
 	private boolean computerPlayer;
 	
 	/**
-	 * 
 	 * Constructor for all the game pieces
 	 * 
 	 * @param X - x co-ordinate of the game piece
 	 * @param Y - y co-ordinate of the game piece
 	 * @param computerPlayer - flag to determine if an instance of MiniNinja is Gideon's or player's
-	 * 
 	 */
 	public GamePiece(int X, int Y, boolean computerPlayer) {
 		
@@ -27,11 +25,9 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * Set's X co-ordinate
 	 * 
 	 * @param X - new X co-ordinate
-	 * 
 	 */
 	public void setX(int X) {
 		
@@ -40,11 +36,9 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * Set's Y co-ordinate
 	 * 
 	 * @param Y - new Y co-ordinate
-	 * 
 	 */
 	public void setY(int Y) {
 		
@@ -53,9 +47,7 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * @return - returns X co-ordinate of the game piece
-	 * 
 	 */
 	public int getX() {
 		
@@ -64,9 +56,7 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * @return - returns Y co-ordinate of the game piece
-	 * 
 	 */
 	public int getY() {
 		
@@ -75,9 +65,7 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * @return - returns player game piece = false or Gideon game piece = true
-	 * 
 	 */
 	public boolean getComputerPlayerFlag() {
 		
@@ -86,7 +74,6 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * @return - return's the piece
 	 */
 	public GamePiece getPiece() {
@@ -94,7 +81,6 @@ public class GamePiece {
 	}
 	
 	/**
-	 * 
 	 * @return - the letter that is associated with the game piece
 	 */
 	public String printPiece() {

@@ -1,10 +1,14 @@
-import java.util.ArrayList;
-
 /**
- * 
  * @author ajink
- *
  */
+
+package MiniMax;
+import java.util.ArrayList;
+import Board.*;
+import GamePieces.*;
+import MoveGen.*;
+
+
 public class MiniMax {
 	
 	GameBoard game = null;
@@ -13,10 +17,17 @@ public class MiniMax {
 	ArrayList<Move> movesObj = new ArrayList<Move>();
 	private int numberOfNodesVisited = 0;
 	
-	////////////////////////////////////////////////////////////////
-	private int MAX_DEPTH = 4; ////////////////////////
-	////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////
+	/*/*/																		/*/*/
+	/*/*/                     private int MAX_DEPTH = 4;					    /*/*/
+	/*/*/																		/*/*/
+	/////////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * MiniMax constructor to initialize movesObj with all the available moves
+	 * @param game - The current GameBoard State
+	 * @param moves - All the possible moves according to the current game state
+	 */
 	public MiniMax(GameBoard game, ArrayList<Integer> moves) {
 		this.game = game;
 		this.gamePieces = game.getGamePiecesArray();
@@ -28,22 +39,35 @@ public class MiniMax {
 		}
 	}
 	
+	/**
+	 * Increments MAX_DEPTH of tree search by 1
+	 */
 	public void incrementMAX_DEPTH() {
 		
 		this.MAX_DEPTH++;
 		
 	}
 	
+	/**
+	 * Decrements MAX_DEPTH of tree search by 1
+	 */
 	public void decrementMAX_DEPTH() {
 		
 		this.MAX_DEPTH--;
 		
 	}
 	
+	/**
+	 * @returns the current MAX_DEPTH
+	 */
 	public int getMAX_DEPTH() {
 		return this.MAX_DEPTH;
 	}
 	
+	/**
+	 * Starts the MiniMax Alg. by call the MIN() method
+	 * @returns the best move out of all the possible moves
+	 */
 	public String start() {
 		Best best = new Best("", -99999999);
 	
@@ -100,6 +124,13 @@ public class MiniMax {
 		return best.move;
 	}
 	
+	/**
+	 * Evaluates the best move for Gideon(Computer Player)
+	 * 
+	 * @param depth - Current level at which MiniMax Alg. is operating
+	 * @param bestScore - Current best score of the best move
+	 * @return the score of the best move
+	 */
 	public int MIN(int depth, int bestScore) {
 		
 		UpdateBoard boardUpdater = new UpdateBoard();
@@ -154,6 +185,13 @@ public class MiniMax {
 		return best.score;
 	}
 
+	/**
+	 * Evaluates the best move for Player
+	 * 
+	 * @param depth - Current level at which MiniMax Alg. is operating
+	 * @param bestScore - Current best score of the best move
+	 * @return the score of the best move
+	 */
 	public int MAX(int depth, int bestScore) {
 		
 		UpdateBoard boardUpdater = new UpdateBoard();
@@ -212,6 +250,10 @@ public class MiniMax {
 		return best.score;
 	}
 	
+	/**
+	 * Evaluates the score of every move made on the virtual board by counting the remaining computer pieces and player pieces
+	 * @returns the difference between gideons piece count and player piece count
+	 */
 	public int EVAL() {
 		int playerPieceCount = 0;
 		int gideonPieceCount = 0;

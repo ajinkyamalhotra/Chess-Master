@@ -1,19 +1,22 @@
 /**
- * 
  * @author Ajinkya Malhotra
- *
  */
 
 import java.util.*;
+
+import Board.*;
+import GamePieces.*;
+import InputHelper.*;
+import MiniMax.*;
+import MoveGen.*;
+import Printer.*;
 public class Driver {
 	
 	static GameBoard game = new GameBoard();													//Initializing the GameBoard
 	static ArrayList<GamePiece> gamePieces = game.getGamePiecesArray();							//Storing the gamePieces array
 	
 	/**
-	 * 
 	 * Gets user input to decide if player or Gideon is going to make the first move
-	 * 
 	 */
 	public static void start() {
 		@SuppressWarnings("resource")
@@ -46,10 +49,8 @@ public class Driver {
 	}
 	
 	/**
-	 * 
 	 * Captures the player's move
 	 * Executes the player's move if legal
-	 * 
 	 */
 	private static void playersMove() {
 		Print print = new Print(); 
@@ -72,7 +73,7 @@ public class Driver {
 		if(!moveCheck)																			//Recall the playersMove() method if the move entered by the user is illegal
 			playersMove();
 
-		formattedUserInput = CheckUserInput.formatUserMove(userInput);							//Formatting the user's move to make it as an executable move on the board
+		formattedUserInput = FormatInput.formatUserMove(userInput);							//Formatting the user's move to make it as an executable move on the board
 		
 		//System.out.println(formattedUserInput);
 		
@@ -87,10 +88,8 @@ public class Driver {
 	}
 	
 	/**
-	 * 
 	 * Calls minimax to get Gideons move
 	 * Executes Gideons Move i.e. returned by Minimax
-	 * 
 	 */
 	private static void GideonsMove() {
 		Print print = new Print();

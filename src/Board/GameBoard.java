@@ -1,4 +1,10 @@
+/**
+ * @author Ajinkya Malhotra
+ */
+
+package Board;
 import java.util.ArrayList;
+import GamePieces.*;
 
 public class GameBoard {
 
@@ -7,9 +13,7 @@ public class GameBoard {
 	private String[][] gameBoard = new String[8][7];
 	
 	/**
-	 * 
 	 * Constructor - Preset's the game board
-	 * 
 	 */
 	public GameBoard() {
 		board.add(new King(7, 3, true));
@@ -46,9 +50,7 @@ public class GameBoard {
 	}
 	
 	/**
-	 * 
 	 * @return - returns the game pieces array
-	 * 
 	 */
 	public ArrayList<GamePiece> getGamePiecesArray() {
 		
@@ -57,9 +59,7 @@ public class GameBoard {
 	}
 	
 	/**
-	 * 
 	 * Updates the String gameBoard (Used for printing game board)
-	 * 
 	 */
 	public void updateGameBoard() {
 		
@@ -74,11 +74,9 @@ public class GameBoard {
 	}
 	
 	/**
-	 * 
 	 * Changes a piece to mini piece
 	 * 
 	 * @param piece - Game piece that has to be changed to mini
-	 * 
 	 */
 	public void changePieceToMini(GamePiece piece) {
 		int X = piece.getX();
@@ -99,20 +97,16 @@ public class GameBoard {
 	}
 	
 	/**
-	 * 
 	 * Removes the game piece from the arrayList of game pieces
 	 * 
 	 * @param piece - Game piece that has to be removed from the ArrayList
-	 * 
 	 */
 	public void removeGamePiece(GamePiece piece) {
 		board.remove(piece);
 	}
 	
 	/**
-	 * 
 	 * Print's the entire game board
-	 *
 	 */
 	public void printBoard() {
 		

@@ -32,29 +32,23 @@ public class MiniMax {
 		this.game = game;
 		this.gamePieces = game.getGamePiecesArray();
 		this.moves = moves;
-		for(int i=0; i<this.moves.size(); ++i) {
-			
+		
+		for(int i=0; i<this.moves.size(); ++i) 
 			movesObj.add(new Move(moves.get(i)));
-			
-		}
 	}
 	
 	/**
 	 * Increments MAX_DEPTH of tree search by 1
 	 */
 	public void incrementMAX_DEPTH() {
-		
 		this.MAX_DEPTH++;
-		
 	}
 	
 	/**
 	 * Decrements MAX_DEPTH of tree search by 1
 	 */
 	public void decrementMAX_DEPTH() {
-		
 		this.MAX_DEPTH--;
-		
 	}
 	
 	/**
@@ -80,7 +74,6 @@ public class MiniMax {
 			//ComputerMove = true and DummyBoard = true
 			boardUpdater.playMove(currentMove.move+"", game, gamePieces, true, true, true);
 			
-			
 			//System.out.println(" "+i+" Doing move at Start and at level 0");
 			//Print print = new Print();
 			//print.board(game);
@@ -94,16 +87,13 @@ public class MiniMax {
 			}*/
 			
 			currentMove.score = this.MIN(0, -Integer.MAX_VALUE);
-			
 			if(currentMove.score > best.score) {
 				best.move = ""+currentMove.move;
 				best.score = currentMove.score;
 			}
 
-			
 			//retract currentMove.move from the board and restore the gamestate here
 			boardUpdater.retractMove(currentMove.move+"", game, gamePieces, true);
-			
 			
 			//Print print2 = new Print();
 			//print2.board(game);
@@ -111,13 +101,9 @@ public class MiniMax {
 		
 		System.out.println("\n Number of nodes visited = " + numberOfNodesVisited);
 		
-		
 		for(int i=0; i<movesObj.size(); ++i) {
-			
 			Move currentMove = movesObj.get(i);
-			
 			System.out.println("Moves is "+currentMove.move+" and the score is "+currentMove.score);
-			
 		}
 	
 		//make best.move on the board
@@ -134,7 +120,6 @@ public class MiniMax {
 	public int MIN(int depth, int bestScore) {
 		
 		UpdateBoard boardUpdater = new UpdateBoard();
-		
 		Best best = new Best("", 99999999);
 		
 		if(!boardUpdater.findKing(gamePieces, true))
@@ -144,20 +129,15 @@ public class MiniMax {
 			return EVAL();
 		
 		else {
-			
 			ArrayList<Move> movesObjMin = new ArrayList<Move>();
 			ArrayList<GamePiece> gamePiecesMin = game.getGamePiecesArray();
 			ArrayList<Integer> movesMin = MoveGenerator.Gen(false, gamePiecesMin);
-			for(int i=0; i<movesMin.size(); ++i) {
-				
+			
+			for(int i=0; i<movesMin.size(); ++i) 
 				movesObjMin.add(new Move(movesMin.get(i)));
 				
-			}
-			
-			depth += 1;
-			
+			depth++;
 			for(int i=0; i<movesObjMin.size(); ++i) {
-				
 				Move currentMove = movesObjMin.get(i);
 				
 				//save gamestate here 
@@ -169,7 +149,6 @@ public class MiniMax {
 				
 				numberOfNodesVisited++;
 				currentMove.score = this.MAX(depth, best.score);
-				
 				if(currentMove.score < best.score) {
 					best.move = ""+currentMove.move;
 					best.score = currentMove.score;
@@ -177,11 +156,9 @@ public class MiniMax {
 				
 				//retract currentMove.move from the board
 				boardUpdater.retractMove(currentMove.move+"", game, gamePieces, true);
-				
 			}
 			
 		}
-			
 		return best.score;
 	}
 
@@ -193,9 +170,7 @@ public class MiniMax {
 	 * @return the score of the best move
 	 */
 	public int MAX(int depth, int bestScore) {
-		
 		UpdateBoard boardUpdater = new UpdateBoard();
-		
 		Best best = new Best("", -999999999);
 		
 		if(!boardUpdater.findKing(gamePieces, false)) 
@@ -205,33 +180,26 @@ public class MiniMax {
 			return EVAL();
 		
 		else {
-			
 			ArrayList<Move> movesObjMax = new ArrayList<Move>();;
 			ArrayList<GamePiece> gamePiecesMax = game.getGamePiecesArray();
 			ArrayList<Integer> movesMax = MoveGenerator.Gen(true, gamePiecesMax);
-			for(int i=0; i<movesMax.size(); ++i) {
-				
+			for(int i=0; i<movesMax.size(); ++i)
 				movesObjMax.add(new Move(movesMax.get(i)));
-				
-			}
 
 			
-			depth += 1;
+			depth++;
 			
 			for(int i=0; i<movesObjMax.size(); ++i) {
-				
 				Move currentMove = movesObjMax.get(i);
 				
 				//save gamestate here 
 				game = boardUpdater.playMove(currentMove.move+"", game, gamePiecesMax, true, true, true);
 				
-				
 				//System.out.println(" "+i+" Doing move at Max and at level "+depth);
-			    //Print print = new Print();
+			        //Print print = new Print();
 				//print.board(game);
 				
 				numberOfNodesVisited++;
-				
 				currentMove.score = this.MIN(depth, best.score);
 				
 				if(currentMove.score > best.score) {
@@ -241,12 +209,9 @@ public class MiniMax {
 				
 				//retract currentMove.move from the board
 				boardUpdater.retractMove(currentMove.move+"", game, gamePieces, true);
-				
-				
 			}
 			
 		}
-			
 		return best.score;
 	}
 	
@@ -265,7 +230,6 @@ public class MiniMax {
 			else
 				playerPieceCount++;
 		}
-		
 		return gideonPieceCount - playerPieceCount;
 	}
 }

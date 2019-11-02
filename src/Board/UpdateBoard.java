@@ -17,10 +17,14 @@ public class UpdateBoard {
 	 * appropriate flag is copied to actionPerformed variable and this is 
 	 * used by the MiniMax algorithm to retract move from the game board,
 	 * once the score calculations are done. 
+	 * 
+	 * action1Moved Flag - Represents no impact was caused by the recently moved piece
+	 * action2DecreasedHealth Flag - Represents decrease Health/change game piece to mini action was performed
+	 * action3Killed  Flag - Represents that a piece was killed/removed from the game board
 	 */
-	private static final String action1Moved = "OnlyMoved";													//This Flag represents no impact was caused by the recently moved piece
-	private static final String action2DecreasedHealth = "DecreasedHealth";									//This Flag represents decrease Health/change game piece to mini action was performed
-	private static final String action3Killed = "Killed";													//This Flag represents that a piece was killed/removed from the game board
+	private static final String action1Moved = "OnlyMoved";
+	private static final String action2DecreasedHealth = "DecreasedHealth";
+	private static final String action3Killed = "Killed";
 		
 	private GamePiece spare = null;
 	private String actionPerformed = null;
@@ -40,24 +44,36 @@ public class UpdateBoard {
 		
 		this.game = gameB;
 		
-		int locX = Integer.parseInt(move.charAt(0)+"")-1;													//Getting the x Co-ordinate of the game piece
-		int locY = Integer.parseInt(move.charAt(1)+"")-1;													//Getting the y Co-ordinate of the game piece
+		//Getting the x Co-ordinate of the game piece
+		int locX = Integer.parseInt(move.charAt(0)+"")-1;
 		
-		int locXnew = Integer.parseInt(move.charAt(2)+"") -1;												//Getting the new x-axis location where the game piece will be moved
-		int locYnew = Integer.parseInt(move.charAt(3)+"") -1;												//Getting the new y-axis location where the game piece will be moved
+		//Getting the y Co-ordinate of the game piece
+		int locY = Integer.parseInt(move.charAt(1)+"")-1;
+		
+		//Getting the new x-axis location where the game piece will be moved
+		int locXnew = Integer.parseInt(move.charAt(2)+"") -1;
+		
+		//Getting the new y-axis location where the game piece will be moved
+		int locYnew = Integer.parseInt(move.charAt(3)+"") -1;
 			
 		GamePiece recentlyMoved = null; 
 		for(int i=0; i<gamePieces.size(); ++i) {
 			recentlyMoved = gamePieces.get(i);
-			if(locX == recentlyMoved.getX() && locY == recentlyMoved.getY()) {								//Finding the gamePiece that needs to be moved
-				recentlyMoved.setX(locXnew); recentlyMoved.setY(locYnew);									//Changing the game piece location to the new x and y co-ordinates
+			
+			//Finding the gamePiece that needs to be moved
+			if(locX == recentlyMoved.getX() && locY == recentlyMoved.getY()) {
+				
+				//Changing the game piece location to the new x and y co-ordinates
+				recentlyMoved.setX(locXnew); recentlyMoved.setY(locYnew);
 				break;
 			}
 			
 		}
 		
-		if(checkStatus)
-			checkStatus(recentlyMoved, locXnew, locYnew, gamePieces, flag, dummyBoard);						//Checking for impact on the game board caused by the recently moved game piece
+		if(checkStatus) {
+			//Checking for impact on the game board caused by the recently moved game piece
+			checkStatus(recentlyMoved, locXnew, locYnew, gamePieces, flag, dummyBoard);
+		}
 		
 		return game;
 	}
@@ -79,44 +95,54 @@ public class UpdateBoard {
 	 */
 	public void checkStatus(GamePiece recentlyMoved, int newX, int newY, ArrayList<GamePiece> gamePieces, boolean playerOrGideonFlag, boolean dummyBoard) {
 		
-		actionPerformed = action1Moved;																		//@scenario1
+		//@scenario1
+		actionPerformed = action1Moved;
 		
 		for(int i=0; i<gamePieces.size(); ++i) {
 			GamePiece current = gamePieces.get(i);
 			int currX = current.getX();
 			int currY = current.getY();
 			
-			int location = (currX)*10 + (currY);															//current location of the game piece
+			//current location of the game piece
+			int location = (currX)*10 + (currY);
 	        
 			int invertor = 1;
 			
 			if(playerOrGideonFlag) {
-				invertor = -1;																				//if Gideon's making a move on game board reserve the condition check parameters
+				//if Gideon's making a move on game board reserve the condition check parameters
+				invertor = -1;
 	        }
 			
-	        if((newX*10) + newY + 10*invertor == location &&												//Finding if there is a game piece that is straight above / straight below the recently
-	        		recentlyMoved.getComputerPlayerFlag() != current.getComputerPlayerFlag()) {				//moved game piece
+			//Finding if there is a game piece that is straight above / straight below the recently
+	        if((newX*10) + newY + 10*invertor == location &&
+	        		recentlyMoved.getComputerPlayerFlag() != current.getComputerPlayerFlag()) {
 	        																								
 	        	//saving the game piece
 	        	spare = current;
 	        	
+	        	//@scenario2
 	        	if(current instanceof Samurai || current instanceof Ninja) {								
 	        		
-	        		actionPerformed = action2DecreasedHealth;												//@scenario2
+	        		
+	        		actionPerformed = action2DecreasedHealth;												
 	        		decreaseHealth(current);
 	        		break;
 	        		
 	        	}
+	        	
+	        	//@scenario3
 	        	else if(current instanceof MiniSamurai || current instanceof MiniNinja) {
 	        		
-	        		actionPerformed = action3Killed;														//@scenario3
+	        		actionPerformed = action3Killed;														
 	        		kill(current);
 	        		break;
 	        		
 	        	}
+	        	
+	        	//@scenario4
 	        	else if(current instanceof King) {
 	        		
-	        		actionPerformed = action3Killed;														//@scenario4
+	        		actionPerformed = action3Killed;														
 	        		GameOver(current, dummyBoard);
 	        		break;
 	        		
@@ -135,9 +161,7 @@ public class UpdateBoard {
 	 * @param piece - The game piece whose health is getting decreased or is getting changed to mini
 	 */
 	public void decreaseHealth(GamePiece piece) {
-		
-		game.changePieceToMini(piece);																		//changing game piece to mini
-		
+		game.changePieceToMini(piece);	
 	}
 	
 	
@@ -147,9 +171,7 @@ public class UpdateBoard {
 	 * @param piece - The game piece that is getting deleted from the game board
 	 */
 	public void kill(GamePiece piece) {
-		
-		game.removeGamePiece(piece);																		//Removing piece from game board
-			
+		game.removeGamePiece(piece);	
 	}
 	
 	
@@ -164,20 +186,24 @@ public class UpdateBoard {
 	 */
 	public void GameOver(GamePiece piece, boolean dummyBoard) {
 		
-		game.removeGamePiece(piece);																		//Removing piece from game board
+		game.removeGamePiece(piece);
 		
 		if(!dummyBoard) {
-			game.updateGameBoard();																			//updating the String copy of the game board
-			Print print = new Print();																		
-			print.board(game);																				//Printing the entire game board
+			//updating the String copy of the game board
+			game.updateGameBoard();																			
+			Print print = new Print();
+			
+			//Printing the entire game board
+			print.board(game);																				
 		
-			if(piece.getComputerPlayerFlag())																//If true, then Gideon's King is getting attacked, hence player wins.
+			if(piece.getComputerPlayerFlag())
 				System.out.println("\nYou win.");
 		
-			else if(!piece.getComputerPlayerFlag())															//If false, then player's King is getting attacked, hence Gideon wins.
+			else if(!piece.getComputerPlayerFlag())
 				System.out.println("\nGideon wins.");
 
-			System.exit(1);																					//Game Over since King got attacked
+			//Game Over since King got attacked
+			System.exit(1);
 		
 		}
 	
@@ -198,11 +224,14 @@ public class UpdateBoard {
 		
 		for(int i=0; i<gamePieces.size(); ++i) {
 			
-			if(gamePieces.get(i) instanceof King) {															//Finding the king piece in the game pieces arraylist
+			//Finding the king piece in the game pieces arraylist
+			if(gamePieces.get(i) instanceof King) {
 				
-				if(gamePieces.get(i).getComputerPlayerFlag() == playerOrGideon) {							//Making sure that is the king we want to find
+				//Making sure that is the king we want to find
+				if(gamePieces.get(i).getComputerPlayerFlag() == playerOrGideon) {
 					
-					kingFound = true;																		//Setting the kingFound flag to true
+					//Setting the kingFound flag to true
+					kingFound = true;
 					break;
 				}
 				
@@ -229,7 +258,8 @@ public class UpdateBoard {
 	 */
 	public GameBoard retractMove(String move, GameBoard gameB, ArrayList<GamePiece> gamePieces, boolean flag) {
 		
-		if(actionPerformed.equals(action2DecreasedHealth)) {												//@scenario1
+		//@scenario1
+		if(actionPerformed.equals(action2DecreasedHealth)) {
 			
 			int locX = spare.getX();
 			int locY = spare.getY();
@@ -237,10 +267,14 @@ public class UpdateBoard {
 				
 				GamePiece current = gamePieces.get(i);
 				
-				if(locX == current.getX() && locY == current.getY()) {										//Finding the piece whose health was decreased in the previous move
+				//Finding the piece whose health was decreased in the previous move
+				if(locX == current.getX() && locY == current.getY()) {
 					
-					gamePieces.remove(i);																	//Removing the piece
-					gamePieces.add(spare);																	//Re-storing the game piece 
+					//Removing the piece
+					gamePieces.remove(i);
+					
+					//Re-storing the game piece 
+					gamePieces.add(spare);																	
 					break;
 					
 				}
@@ -249,16 +283,20 @@ public class UpdateBoard {
 			
 		}
 		
-		else if(actionPerformed.equals(action3Killed)) {													//@scenarrio2
-			gamePieces.add(spare);																			//adding the piece that was removed in the previous move
+		//@scenarrio2
+		else if(actionPerformed.equals(action3Killed)) {
+			//adding the piece that was removed in the previous move
+			gamePieces.add(spare);
 		}
 		
 		String a = move.substring(0, 2);
 		String b = move.substring(2, 4);
 		
-		move = b+a;																							//reversing the recently performed move
+		//reversing the recently performed move
+		move = b+a;
 	
-		return playMove(move, gameB,  gamePieces,  flag, true, false);										//calling the play move method with the reversed move and returning the game state
+		//calling the play move method with the reversed move and returning the game state
+		return playMove(move, gameB,  gamePieces,  flag, true, false);
 	}
 	
 	

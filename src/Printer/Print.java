@@ -27,26 +27,35 @@ public class Print {
 			
 			String move = ""+moves.get(i);
 			
-			int first = Integer.parseInt(""+move.charAt(1));						//Getting the original X-axis location of the game piece(int) 
-			char second = move.charAt(0);											//Getting the original Y-axis location of the game piece(int stored as char) 
-			int third = Integer.parseInt(""+move.charAt(3));						//Getting the new X-axis location of the game piece(int)
-			char fourth = move.charAt(2);											//Getting the new Y-axis location of the game piece(int stored as char)
+			//Getting the original X-axis location of the game piece(int) 
+			int first = Integer.parseInt(""+move.charAt(1));
+			
+			//Getting the original Y-axis location of the game piece(int stored as char)
+			char second = move.charAt(0);
+			
+			//Getting the new X-axis location of the game piece(int)
+			int third = Integer.parseInt(""+move.charAt(3));
+			
+			//Getting the new Y-axis location of the game piece(int stored as char)
+			char fourth = move.charAt(2);
 			
 			char one = 'A'; char three = 'A';
-			
 			int count1 = 1; int count2 = 1;
 			
-			while(count1 != first) {												//Converting the original X-axis location from int to char
+			//Converting the original X-axis location from int to char
+			while(count1 != first) {
 				one++;
 				count1++;
 			}
 			
-			while(count2 != third) {												//Converting the original Y-axis location from int to char
+			//Converting the original Y-axis location from int to char
+			while(count2 != third) {
 				three++;
 				count2++;
 			}
 			
-			String print = ""+one+second+three+fourth;								//Original-X(char) + Original-Y(int stored as char) + NEW-X(char) + NEW-Y(int stored as char) = MOVE
+			//Original-X(char) + Original-Y(int stored as char) + NEW-X(char) + NEW-Y(int stored as char) = MOVE
+			String print = ""+one+second+three+fourth;
 			System.out.print(print+" ");											
 			
 		}
@@ -55,8 +64,9 @@ public class Print {
 		
 	}
 	
+	//Prints the entire gameboard
 	public void board(GameBoard game) {
-		game.printBoard();															//Prints the entire gameboard
+		game.printBoard();															
 	}
 	
 }

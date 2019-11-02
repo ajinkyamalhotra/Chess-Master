@@ -18,9 +18,9 @@ public class MiniMax {
 	private int numberOfNodesVisited = 0;
 	
 	/////////////////////////////////////////////////////////////////////////////////
-	/*/*/									    /*/*/								/*/*/
-	/*/*/                     private int MAX_DEPTH = 4;			    /*/*/
-	/*/*/									    /*/*/								/*/*/
+	/*/*/									    								/*/*/
+	/*/*/                     private int MAX_DEPTH = 4;			    		/*/*/
+	/*/*/									    								/*/*/
 	/////////////////////////////////////////////////////////////////////////////////
 	
 	/**
@@ -86,12 +86,6 @@ public class MiniMax {
 			//print.board(game);
 			
 			numberOfNodesVisited++;
-			
-			/*if(currentMove.move == 7424) {
-				System.out.println();
-				Print print = new Print();
-				print.board(game);
-			}*/
 			
 			currentMove.score = this.MIN(0, -Integer.MAX_VALUE);
 			

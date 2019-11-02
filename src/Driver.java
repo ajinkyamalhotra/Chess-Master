@@ -12,8 +12,11 @@ import MoveGen.*;
 import Printer.*;
 public class Driver {
 	
-	static GameBoard game = new GameBoard();													//Initializing the GameBoard
-	static ArrayList<GamePiece> gamePieces = game.getGamePiecesArray();							//Storing the gamePieces array
+	//Initializing the GameBoard
+	static GameBoard game = new GameBoard();
+	
+	//Storing the gamePieces array
+	static ArrayList<GamePiece> gamePieces = game.getGamePiecesArray();							
 	
 	/**
 	 * Gets user input to decide if player or Gideon is going to make the first move
@@ -31,19 +34,23 @@ public class Driver {
 				"      piece is attacked, it is removed from the board.  The king cannot move, and if it\r\n" + 
 				"      is attacked, then that side loses.  The initial position is:";
 		
-		String userInput = kb.next();  															//Getting the user's preference for whose playing the first move
+		//Getting the user's preference for whose playing the first move
+		String userInput = kb.next();
 		
-		if(userInput.equals("1")) {    															//Player will play the first move
+		//Player will play the first move
+		if(userInput.equals("1")) {    															
 			System.out.println(prompt);
 			playersMove(); 
 		}
 		
-		else if(userInput.equals("2")) {														//Gideon will play the first move
+		//Gideon will play the first move
+		else if(userInput.equals("2")) {														
 			System.out.println(prompt);
 			GideonsMove();
 		}
 		
-		else 						   															//Invalid input, re-call method and attempt to get user's input again
+		//Invalid input, re-call method and attempt to get user's input again
+		else 						   															
 			start();
 		
 	}
@@ -54,36 +61,55 @@ public class Driver {
 	 */
 	private static void playersMove() {
 		Print print = new Print(); 
-		print.board(game); 																		//Prints the entire gameBoard.
 		
-		boolean flag = false;																	//true = Get Gideon's move | false = Get User's move
+		//Prints the entire gameBoard.
+		print.board(game);
+		
+		//true = Get Gideon's move | false = Get User's move
+		boolean flag = false;
 	
-		ArrayList<Integer> moves = MoveGenerator.Gen(flag, gamePieces);							//returns all the legal moves possible to make by the player.
-		Print.moves(moves);																		//Prints all the moves returned by the Gen method.
+		//returns all the legal moves possible to make by the player.
+		ArrayList<Integer> moves = MoveGenerator.Gen(flag, gamePieces);
+		//Prints all the moves returned by the Gen method.
+		Print.moves(moves);
 		
 		System.out.print("\n\n Enter your move:  ");
+		
 		@SuppressWarnings("resource")
 		Scanner kb = new Scanner(System.in);
-		String userInput = kb.next();															//Captures the players move
 		
-		boolean moveCheck = CheckUserInput.checkMove(userInput, moves);							//Checks if the move entered by the player is in the legal move list
+		//Captures the players move
+		String userInput = kb.next();
+		
+		//Checks if the move entered by the player is in the legal move list
+		boolean moveCheck = CheckUserInput.checkMove(userInput, moves);
 		
 		String formattedUserInput = null;
 		
-		if(!moveCheck)																			//Recall the playersMove() method if the move entered by the user is illegal
+		//Recall the playersMove() method if the move entered by the user is illegal
+		if(!moveCheck)
 			playersMove();
 
-		formattedUserInput = FormatInput.formatUserMove(userInput);							//Formatting the user's move to make it as an executable move on the board
+		//Formatting the user's move to make it as an executable move on the board
+		formattedUserInput = FormatInput.formatUserMove(userInput);							
 		
 		//System.out.println(formattedUserInput);
 		
 		UpdateBoard boardUpdater = new UpdateBoard();
-		game = boardUpdater.playMove(formattedUserInput,game, gamePieces, flag, false, true);   //Executing the legal move on the gameBoard
-		gamePieces = game.getGamePiecesArray();													//Getting the updated copy of the Game Pieces Array
-		game.updateGameBoard();																	//Updating the String copy of the game board (required to print the updated gameBoard)
+		
+		//Executing the legal move on the gameBoard
+		game = boardUpdater.playMove(formattedUserInput,game, gamePieces, flag, false, true);
+		
+		//Getting the updated copy of the Game Pieces Array
+		gamePieces = game.getGamePiecesArray();
+		
+		//Updating the String copy of the game board (required to print the updated gameBoard)
+		game.updateGameBoard();
 		
 		System.out.println("\n ========================");
-		GideonsMove();																			//Gideon's turn to make a move
+		
+		//Gideon's turn to make a move
+		GideonsMove();
 	
 	}
 	
@@ -93,42 +119,66 @@ public class Driver {
 	 */
 	private static void GideonsMove() {
 		Print print = new Print();
-		print.board(game);																		//Prints the entire gameBoard.
 		
-		boolean flag = true;																	//true = Gideon's move | false = user's move
+		//Prints the entire gameBoard.
+		print.board(game);
 		
-		ArrayList<Integer> moves = MoveGenerator.Gen(flag, gamePieces);							//returns all the legal moves possible to make by the player.
-		Print.moves(moves);																		//Prints all the moves returned by the Gen method.
+		//true = Gideon's move | false = user's move
+		boolean flag = true;
+		
+		//returns all the legal moves possible to make by the player.
+		ArrayList<Integer> moves = MoveGenerator.Gen(flag, gamePieces);
+		
+		//Prints all the moves returned by the Gen method.
+		Print.moves(moves);
 		
 		//System.out.println("\n\n Gideon will play......" 
 						//+"Feature coming soon, until then keep practicing\n");
 		  
-		MiniMax minimax = new MiniMax(game, moves);												//Declaring and initializing MiniMax object with parameters game and moves
+		//Declaring and initializing MiniMax object with parameters game and moves
+		MiniMax minimax = new MiniMax(game, moves);
 
-		if(moves.size() < 6) {																	//Will increment the MiniMax MAX_DEPTH size by 1 if the legal moves are less than 6
+		//Will increment the MiniMax MAX_DEPTH size by 1 if the legal moves are less than 6
+		if(moves.size() < 6) {
 			minimax.incrementMAX_DEPTH();
 		}
 		
-		long start_time = System.nanoTime();													//Time before starting MiniMax
+		//Time before starting MiniMax
+		long start_time = System.nanoTime();
 		
-		String gideonsMove = minimax.start();													//Starting MiniMax
+		//Starting MiniMax
+		String gideonsMove = minimax.start();
 	
-		double elapsed = System.nanoTime()-start_time;											//Total time taken by MiniMax=Time after MiniMax is finished-Time before MiniMax was started
-	    elapsed=elapsed/1000000000;																//Converting to seconds
+		//Total time taken by MiniMax=Time after MiniMax is finished-Time before MiniMax was started
+		double elapsed = System.nanoTime()-start_time;
+		
+		//Converting to seconds
+	    elapsed=elapsed/1000000000;
 	    
+	    //Changing GideonsMove to A1B2 format
 		System.out.print("\n\n Gideon's move:  "+
-				GideonsMoveConvertor.convert(gideonsMove)+"\n\n");								//Changing GideonsMove to A1B2 format
+				GideonsMoveConvertor.convert(gideonsMove)+"\n\n");
 		
 		UpdateBoard boardUpdater = new UpdateBoard();
 		
-		game = boardUpdater.playMove(gideonsMove, game, gamePieces, flag, false, true);			//Executing the legal move on the gameBoard
-		gamePieces = game.getGamePiecesArray();													//Getting the updated copy of the Game Pieces Array
-		game.updateGameBoard();																	//Updating the String copy of the game board (required to print the updated gameBoard)
+		//Executing the legal move on the gameBoard
+		game = boardUpdater.playMove(gideonsMove, game, gamePieces, flag, false, true);
 		
-		System.out.println("Depth used for this iteration --> "+minimax.getMAX_DEPTH());		//Printing the MAX_DEPTH used by MiniMax to calculate the best move
-		System.out.println("Time Taken for MiniMax --> "+elapsed);								//Printing time taken by MiniMax to calculate the best move
+		//Getting the updated copy of the Game Pieces Array
+		gamePieces = game.getGamePiecesArray();
+		
+		//Updating the String copy of the game board (required to print the updated gameBoard)
+		game.updateGameBoard();
+		
+		//Printing the MAX_DEPTH used by MiniMax to calculate the best move
+		System.out.println("Depth used for this iteration --> "+minimax.getMAX_DEPTH());
+		
+		//Printing time taken by MiniMax to calculate the best move
+		System.out.println("Time Taken for MiniMax --> "+elapsed);
 		System.out.println("\n ========================");
-		playersMove();																			//Player's turn to make a move
+		
+		//Player's turn to make a move
+		playersMove();
 		
 	}
 

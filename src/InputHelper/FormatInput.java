@@ -18,10 +18,17 @@ public class FormatInput {
 		int fourth = -100;
 		
 		try {
-			first = move.charAt(0);																			//x-axis location of game piece
-			second = Integer.parseInt(""+move.charAt(1));													//y-axis location of game piece
-			third = move.charAt(2);																			//x-axis location where the game piece wants to be moved
-			fourth = Integer.parseInt(""+move.charAt(3));													//y-axis location where the game piece wants to be moved
+			//x-axis location of game piece
+			first = move.charAt(0);
+			
+			//y-axis location of game piece
+			second = Integer.parseInt(""+move.charAt(1));
+			
+			//x-axis location where the game piece wants to be moved
+			third = move.charAt(2);
+			
+			//y-axis location where the game piece wants to be moved
+			fourth = Integer.parseInt(""+move.charAt(3));
 		}
 		catch (Exception e){
 			System.out.println("\n Illegal move entered please choose a move from the following list.");
@@ -33,17 +40,20 @@ public class FormatInput {
 		
 		int count1 = 1; int count2 = 1;
 		
-		while(!(""+first).equalsIgnoreCase(""+one)) {														//Getting integer equivalent for old x-axis character
+		//Getting integer equivalent for old x-axis character
+		while(!(""+first).equalsIgnoreCase(""+one)) {
 			one++;
 			count1++;
 		}
 		
-		while(!(""+third).equalsIgnoreCase(""+three)) {														//Getting integer equivalent for new x-axis character
+		//Getting integer equivalent for new x-axis character
+		while(!(""+third).equalsIgnoreCase(""+three)) {
 			three++;
 			count2++;
 		}
 		
-		String formattedUserInput = ""+second+count1+fourth+count2;											//Old Y-axis + Old X-axis + New Y-axis + New X-axis
+		//Old Y-axis + Old X-axis + New Y-axis + New X-axis
+		String formattedUserInput = ""+second+count1+fourth+count2;
 		
 		return formattedUserInput;
 	}

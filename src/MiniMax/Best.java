@@ -5,8 +5,11 @@ package MiniMax;
 
 public class Best {
 	
-	String move = null;						//Stores the best move
-	int score = -99999;						//Stores the best move's score
+	//Stores the best move
+	String move = null;
+	
+	//Stores the best move's score
+	int score = -99999;						
 	
 	/**
 	 * @param m - move

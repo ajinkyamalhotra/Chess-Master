@@ -16,6 +16,8 @@ public class MiniMax {
 	ArrayList<Integer> moves = null;
 	ArrayList<Move> movesObj = new ArrayList<Move>();
 	private int numberOfNodesVisited = 0;
+
+	private static final boolean DEBUG = false;
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	/*/*/									    								/*/*/
@@ -97,7 +99,9 @@ public class MiniMax {
 		
 		for(int i=0; i<movesObj.size(); ++i) {
 			Move currentMove = movesObj.get(i);
-			System.out.println("Moves is "+currentMove.move+" and the score is "+currentMove.score);
+
+			if(DEBUG)
+				System.out.println("Moves is "+currentMove.move+" and the score is "+currentMove.score);
 		}
 	
 		//make best.move on the board

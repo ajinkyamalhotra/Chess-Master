@@ -3,25 +3,26 @@
  */
 
 import java.util.*;
-
 import Board.*;
 import GamePieces.*;
 import InputHelper.*;
 import MiniMax.*;
 import MoveGen.*;
 import Printer.*;
+
+
 public class Driver {
 	
 	//Initializing the GameBoard
-	static GameBoard game = new GameBoard();
+	private static GameBoard game = new GameBoard();
 	
 	//Storing the gamePieces array
-	static ArrayList<GamePiece> gamePieces = game.getGamePiecesArray();							
+	private static ArrayList<GamePiece> gamePieces = game.getGamePiecesArray();
 	
 	/**
 	 * Gets user input to decide if player or Gideon is going to make the first move
 	 */
-	public static void start() {
+	private static void start() {
 		@SuppressWarnings("resource")
 		Scanner kb = new Scanner(System.in);
 		System.out.println("\n (1)    Player's Move\n (2)    Gideon's Move\n ");
@@ -66,10 +67,8 @@ public class Driver {
 		print.board(game);
 		
 		//true = Get Gideon's move | false = Get User's move
-		boolean flag = false;
-	
 		//returns all the legal moves possible to make by the player.
-		ArrayList<Integer> moves = MoveGenerator.Gen(flag, gamePieces);
+		ArrayList<Integer> moves = MoveGenerator.Gen(false, gamePieces);
 		//Prints all the moves returned by the Gen method.
 		Print.moves(moves);
 		
@@ -84,21 +83,19 @@ public class Driver {
 		//Checks if the move entered by the player is in the legal move list
 		boolean moveCheck = CheckUserInput.checkMove(userInput, moves);
 		
-		String formattedUserInput = null;
-		
 		//Recall the playersMove() method if the move entered by the user is illegal
 		if(!moveCheck)
 			playersMove();
 
 		//Formatting the user's move to make it as an executable move on the board
-		formattedUserInput = FormatInput.formatUserMove(userInput);							
+		String formattedUserInput = FormatInput.formatUserMove(userInput);
 		
 		//System.out.println(formattedUserInput);
 		
 		UpdateBoard boardUpdater = new UpdateBoard();
 		
 		//Executing the legal move on the gameBoard
-		game = boardUpdater.playMove(formattedUserInput,game, gamePieces, flag, false, true);
+		game = boardUpdater.playMove(formattedUserInput,game, gamePieces, false, false, true);
 		
 		//Getting the updated copy of the Game Pieces Array
 		gamePieces = game.getGamePiecesArray();
@@ -122,12 +119,10 @@ public class Driver {
 		
 		//Prints the entire gameBoard.
 		print.board(game);
-		
+
 		//true = Gideon's move | false = user's move
-		boolean flag = true;
-		
 		//returns all the legal moves possible to make by the player.
-		ArrayList<Integer> moves = MoveGenerator.Gen(flag, gamePieces);
+		ArrayList<Integer> moves = MoveGenerator.Gen(true, gamePieces);
 		
 		//Prints all the moves returned by the Gen method.
 		Print.moves(moves);
@@ -162,7 +157,7 @@ public class Driver {
 		UpdateBoard boardUpdater = new UpdateBoard();
 		
 		//Executing the legal move on the gameBoard
-		game = boardUpdater.playMove(gideonsMove, game, gamePieces, flag, false, true);
+		game = boardUpdater.playMove(gideonsMove, game, gamePieces, true, false, true);
 		
 		//Getting the updated copy of the Game Pieces Array
 		gamePieces = game.getGamePiecesArray();

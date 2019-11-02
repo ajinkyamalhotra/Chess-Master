@@ -6,8 +6,11 @@ package MiniMax;
 
 public class Move {
 
-	int move = 0;			//Stores the move
-	int score = 0;			//Stores the score
+	//Stores the move
+	int move = 0;
+
+	//Stores the score
+	int score = 0;
 			
 	/**
 	 * @param m - move

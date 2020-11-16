@@ -14,5 +14,5 @@ Samurai       = S
 Mini-Samurai  = s
 Mini-Ninja    = j
 
-A list of all possible moves will be generated for player and for Computer player Gideon.
+A list of all possible moves will be generated for player and for Computer player "/Gideon"/.
 Player can choose any move from this list where as Gideon uses the list, plugs it in the MiniMax algorithm and computes the best possible move and perform's it on the game board.

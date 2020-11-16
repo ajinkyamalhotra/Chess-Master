@@ -2,15 +2,15 @@
 
 This is a chess-like game with a "Karate" theme.  Each side starts with 3 samurai, 3 ninjas, 3 mini-samurai, 3 mini-ninjas, and a King.  It is played on a 7x8 board, and players "attack" opposing pieces by moving one of their pieces in front of an opponents piece.  When a piece is attacked, it is "demoted".  When a "mini" piece is attacked, it is removed from the board.  The king cannot move, and if it is attacked, then that side loses.
 
-Computer Pieces
-Computers Ninja Piece        = Jc
-Computers Samurai Piece      = Sc
-Computers Mini-samurai Piece = sc
-Computers Mini-Ninja Piece   = jc
+Computer Pieces:
+Ninja         = Jc
+Samurai       = Sc
+Mini-samurai  = sc
+Mini-Ninja    = jc
 
-Player Pieces
-Ninja Piece   = J
-Samurai Piece = S
+Player Pieces:
+Ninja         = J
+Samurai       = S
 Mini-Samurai  = s
 Mini-Ninja    = j
 
